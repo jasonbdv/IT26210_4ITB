@@ -72,7 +72,12 @@ while True:
         print("DIRECTIONS\n")
         for each in json_data["route"]["legs"][0]["maneuvers"]:
             if measure == "1":
-                print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
+                distKm = ((each["distance"])*1.61)
+                if distKm > 1:
+                    print((each["narrative"]) + " (" + str(("{:.2f}".format(distKm) +" km)" )))
+                else:
+                    print((each["narrative"]) + " (" + str(("{:.2f}".format(distKm * 1000) + " m)")))
+
             if measure == "2":
                 print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])) + " mi)"))
         print("\n=============================================\n")
