@@ -16,15 +16,26 @@ print("                |_|                                   ")
 print("\n")
 
 while True:
-    
-    
+    default_bool = False
+
     orig = input("Starting Location: ")
     if orig == "quit" or orig == "q":
         break
     dest = input("Destination: ") 
     if dest == "quit" or dest == "q":
         break
+    
+    print("\n")
     url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest})
+
+    while default_bool == False:
+        print("Choose what system of unit will be used for distance.")
+        measure = input("Type 1 for Metric (KM) or Type 2 for Imperial (Mile): ")
+
+        if measure == "1" or measure == "2":
+            default_bool = True
+        else:
+            print("Invalid input. Please try again.\n")
 
     print("URL: " + (url))
 
@@ -41,7 +52,10 @@ while True:
         print("=============================================")
         print("Directions from " + (orig) + " to " + (dest) + "\n")
         print("Trip Duration: " + tripDuration)
-        print("Kilometers: " + str("{:.2f}".format((json_data["route"]["distance"])*1.61)))
+        if measure == "1":
+            print("Kilometers: " + str("{:.2f}".format((json_data["route"]["distance"])*1.61)))
+        elif measure == "2":
+            print("Miles: " + str("{:.2f}".format((json_data["route"]["distance"]))))
 
         if highway == True:
             print("Route will pass through a highway")
@@ -57,7 +71,10 @@ while True:
         print("=============================================\n")
         print("DIRECTIONS\n")
         for each in json_data["route"]["legs"][0]["maneuvers"]:
-            print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
+            if measure == "1":
+                print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
+            if measure == "2":
+                print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])) + " mi)"))
         print("\n=============================================\n")
 
     elif json_status == 402:
