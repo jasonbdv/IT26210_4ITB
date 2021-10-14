@@ -4,6 +4,7 @@ import requests
 main_api = "https://www.mapquestapi.com/directions/v2/route?"
 key = "MjbUBdR1NQfUAX4iE2bTUb2CFUgpcVqO"
 
+print("\n")
 print("  __  __                 ____                     _   ")
 print(" |  \/  |               / __ \                   | |  ")
 print(" | \  / |  __ _  _ __  | |  | | _   _   ___  ___ | |_ ")
@@ -12,6 +13,7 @@ print(" | |  | || (_| || |_) || |__| || |_| ||  __/\__ \| |_ ")
 print(" |_|  |_| \__,_|| .__/  \___\_\ \__,_| \___||___/ \__|")
 print("                | |                                   ")
 print("                |_|                                   ")
+print("\n")
 
 while True:
     
@@ -30,16 +32,33 @@ while True:
     json_status = json_data["info"]["statuscode"]
 
     if json_status == 0:
+        
+        highway = (json_data["route"]["hasHighway"])
+        tollRoad = (json_data["route"]["hasTollRoad"])
+        tripDuration = (json_data["route"]["formattedTime"])
+
         print("API Status: " + str(json_status) + " = A successful route call.\n")
         print("=============================================")
-        print("Directions from " + (orig) + " to " + (dest))
-        print("Trip Duration: " + (json_data["route"]["formattedTime"]))
+        print("Directions from " + (orig) + " to " + (dest) + "\n")
+        print("Trip Duration: " + tripDuration)
         print("Kilometers: " + str("{:.2f}".format((json_data["route"]["distance"])*1.61)))
-        print("Fuel Used (Ltr): " + str("{:.2f}".format(json_data["route"]["fuelUsed"]*3.78)))
-        print("=============================================")
+
+        if highway == True:
+            print("Route will pass through a highway")
+        elif highway == False:
+            print("Route will not pass through a highway")
+        
+        if tollRoad == True:
+            print("Toll Gate is present in route")
+        elif tollRoad == False:
+            print("Toll Gate is not present in route")
+        
+        print("Fuel Used (Ltr): " + str("{:.2f}".format(json_data["route"]["fuelUsed"]*3.78))+"\n")
+        print("=============================================\n")
+        print("DIRECTIONS\n")
         for each in json_data["route"]["legs"][0]["maneuvers"]:
             print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
-        print("=============================================")
+        print("\n=============================================\n")
 
     elif json_status == 402:
         print("**********************************************")
@@ -55,5 +74,5 @@ while True:
         print("************************************************************************")
         print("For Staus Code: " + str(json_status) + "; Refer to:")
         print("https://developer.mapquest.com/documentation/directions-api/status-codes")
-        print("************************************************************************\n")
+        print("************************************************************************")
         
