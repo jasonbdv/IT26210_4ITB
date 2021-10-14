@@ -1,4 +1,10 @@
-# IT26210_4ITB
+# IT26210_EXERCISE-3_4ITB
+Members:
+  Bayola, JemimaJolai T.
+  Mariano, Alphonso Marcello C.
+  Merano, George Steven D.
+  Verde, Jason Benedict D.
+
 List of additional features:
 - welcome page 
 - toll gate and highway indicator 
