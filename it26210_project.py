@@ -37,7 +37,7 @@ while True:
         else:
             print("Invalid input. Please try again.\n")
 
-    print("URL: " + (url))
+    print("\nURL: " + (url))
 
     json_data = requests.get(url).json()
     json_status = json_data["info"]["statuscode"]
@@ -69,6 +69,7 @@ while True:
         
         print("Fuel Used (Ltr): " + str("{:.2f}".format(json_data["route"]["fuelUsed"]*3.78))+"\n")
         print("=============================================\n")
+
         print("DIRECTIONS\n")
         for each in json_data["route"]["legs"][0]["maneuvers"]:
             if measure == "1":
@@ -80,7 +81,10 @@ while True:
 
             if measure == "2":
                 print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])) + " mi)"))
+
         print("\n=============================================\n")
+            
+    
 
     elif json_status == 402:
         print("**********************************************")
@@ -97,4 +101,23 @@ while True:
         print("For Staus Code: " + str(json_status) + "; Refer to:")
         print("https://developer.mapquest.com/documentation/directions-api/status-codes")
         print("************************************************************************")
-        
+
+
+    anotherInput = False
+    while anotherInput == False:
+        again = input("\nEnter another starting point and destination? (yes or no): ")
+
+        if again.casefold() == "yes":
+            testdata = "1"
+            anotherInput = True
+        elif again.casefold() == "no":
+            print("\nThank you for using MapQuest.")
+            testdata = "0"
+            break
+        else:
+            print("Invalid input. Please type yes or no.")
+    
+    print("\n")
+    if testdata == "0":
+        break  
+  
