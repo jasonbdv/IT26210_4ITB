@@ -4,6 +4,15 @@ import requests
 main_api = "https://www.mapquestapi.com/directions/v2/route?"
 key = "MjbUBdR1NQfUAX4iE2bTUb2CFUgpcVqO"
 
+print("  __  __                 ____                     _   ")
+print(" |  \/  |               / __ \                   | |  ")
+print(" | \  / |  __ _  _ __  | |  | | _   _   ___  ___ | |_ ")
+print(" | |\/| | / _` || '_ \ | |  | || | | | / _ \/ __|| __|")
+print(" | |  | || (_| || |_) || |__| || |_| ||  __/\__ \| |_ ")
+print(" |_|  |_| \__,_|| .__/  \___\_\ \__,_| \___||___/ \__|")
+print("                | |                                   ")
+print("                |_|                                   ")
+
 while True:
     
     
