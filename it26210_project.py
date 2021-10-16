@@ -4,6 +4,7 @@ import requests
 main_api = "https://www.mapquestapi.com/directions/v2/route?"
 key = "MjbUBdR1NQfUAX4iE2bTUb2CFUgpcVqO"
 
+#app title
 print("\n")
 print("  __  __                 ____                     _   ")
 print(" |  \/  |               / __ \                   | |  ")
@@ -16,7 +17,7 @@ print("                |_|                                   ")
 print("\n")
 
 while True:
-    default_bool = False
+    default_bool = False #boolean default for looping system of measurement
 
     orig = input("Starting Location: ")
     if orig == "quit" or orig == "q":
@@ -74,7 +75,7 @@ while True:
         for each in json_data["route"]["legs"][0]["maneuvers"]:
             if measure == "1":
                 distKm = ((each["distance"])*1.61)
-                if distKm > 1:
+                if distKm > 1: #if less than one km, show meters
                     print((each["narrative"]) + " (" + str(("{:.2f}".format(distKm) +" km)" )))
                 else:
                     print((each["narrative"]) + " (" + str(("{:.2f}".format(distKm * 1000) + " m)")))
@@ -102,7 +103,7 @@ while True:
         print("https://developer.mapquest.com/documentation/directions-api/status-codes")
         print("************************************************************************")
 
-
+    #ask user for another input
     anotherInput = False
     while anotherInput == False:
         again = input("\nEnter another starting point and destination? (yes or no): ")
