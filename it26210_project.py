@@ -33,6 +33,7 @@ while True:
         print("Choose what system of unit will be used for distance.")
         measure = input("Type 1 for Metric (KM) or Type 2 for Imperial (Mile): ")
 
+        #check what system of measurement will be used
         if measure == "1" or measure == "2":
             default_bool = True
         else:
@@ -53,11 +54,14 @@ while True:
         print("=============================================")
         print("Directions from " + (orig) + " to " + (dest) + "\n")
         print("Trip Duration: " + tripDuration)
+
+        #check what type of measurement
         if measure == "1":
             print("Kilometers: " + str("{:.2f}".format((json_data["route"]["distance"])*1.61)))
         elif measure == "2":
             print("Miles: " + str("{:.2f}".format((json_data["route"]["distance"]))))
 
+        #check if route and toll way is present
         if highway == True:
             print("Route will pass through a highway")
         elif highway == False:
@@ -108,6 +112,7 @@ while True:
     while anotherInput == False:
         again = input("\nEnter another starting point and destination? (yes or no): ")
 
+        #.casefold() for checking yes or no inputs, regardless of the case
         if again.casefold() == "yes":
             testdata = "1"
             anotherInput = True
