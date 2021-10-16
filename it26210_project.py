@@ -36,7 +36,7 @@ while True:
         if measure == "1" or measure == "2":
             default_bool = True
         else:
-            print("Invalid input. Please try again.\n")
+            print("\nInvalid input. Please try again.\n")
 
     print("\nURL: " + (url))
 
