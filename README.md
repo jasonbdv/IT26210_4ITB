@@ -9,5 +9,5 @@ List of additional features:
 - ask the user for another set of input
 - stops (if doable)
 
-List of added feature/s:
+List of backlog features that were added:
 - route type
