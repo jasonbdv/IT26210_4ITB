@@ -8,3 +8,6 @@ List of additional features:
 - less than 1km => print 999 meters instead
 - ask the user for another set of input
 - stops (if doable)
+
+List of added feature/s:
+- route type
