@@ -27,10 +27,21 @@ while True:
         break
     
     print("\n")
-    url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest})
+
+    forRouteType = False
+
+    while forRouteType == False:
+        #ROUTE TYPE
+        routeType = input("Enter route type (fastest, shortest, pedestrian, bicycle)\n Note: fastest means quickest driving route and shortest means shortest driving distance: ")
+        if routeType.casefold() == "fastest" or routeType == "shortest" or routeType == "pedestrian" or routeType == "bicycle":
+            forRouteType = True
+        else:
+            print("Wrong input. Please select from fastest, shortest, pedestrian, bicycle\n")
+
+    url = main_api + urllib.parse.urlencode({"key":key, "from":orig, "to":dest, "routeType":routeType})
 
     while default_bool == False:
-        print("Choose what system of unit will be used for distance.")
+        print("\nChoose what system of unit will be used for distance.")
         measure = input("Type 1 for Metric (KM) or Type 2 for Imperial (Mile): ")
 
         #check what system of measurement will be used
@@ -53,6 +64,7 @@ while True:
         print("API Status: " + str(json_status) + " = A successful route call.\n")
         print("=============================================")
         print("Directions from " + (orig) + " to " + (dest) + "\n")
+        print("Route Type: "+ json_data["route"]["options"]["routeType"])
         print("Trip Duration: " + tripDuration)
 
         #check what type of measurement
