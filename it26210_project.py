@@ -33,7 +33,7 @@ while True:
     while forRouteType == False:
         #ROUTE TYPE
         routeType = input("Enter route type (fastest, shortest, pedestrian, bicycle)\n Note: fastest means quickest driving route and shortest means shortest driving distance: ")
-        if routeType.casefold() == "fastest" or routeType == "shortest" or routeType == "pedestrian" or routeType == "bicycle":
+        if routeType.casefold() == "fastest" or routeType.casefold() == "shortest" or routeType.casefold() == "pedestrian" or routeType.casefold() == "bicycle":
             forRouteType = True
         else:
             print("Wrong input. Please select from fastest, shortest, pedestrian, bicycle\n")
